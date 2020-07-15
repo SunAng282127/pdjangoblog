@@ -1,1 +1,2 @@
-python-3.8.0
+python-3.8.3       #设置自己的python版本,如果提交代码到heroku的时候因为版本报错，你就改一个python版本再提交
+#官网指定Python版本：  https://devcenter.heroku.com/articles/python-support#supported-runtimes
