@@ -1,4 +1,4 @@
-#coding:utf-8
+# coding:utf-8
 """
 Django settings for mysite project.
 
@@ -16,7 +16,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ SECRET_KEY = 'p1p2e^77+6ex*1@-s6hzcx7l3bx#g2q0w1za1c-x-1p@n6z^x*'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -60,7 +58,7 @@ ROOT_URLCONF = 'vmaig_blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates/"),],
+        'DIRS': [os.path.join(BASE_DIR, "templates/"), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,15 +73,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'vmaig_blog.wsgi.application'
 
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -98,81 +93,78 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
 
-#设置user model
+# 设置user model
 AUTH_USER_MODEL = "vmaig_auth.VmaigUser"
 
-
-#log配置###########################################
+# log配置###########################################
 LOG_FILE = "./all.log"
 
 LOGGING = {
-        'version': 1,
-        'disable_existing_loggers': True,
+    'version': 1,
+    'disable_existing_loggers': True,
 
-        'filters': {
-            'require_debug_false': {
-                '()': 'django.utils.log.RequireDebugFalse'
-                }
-            },
-        'formatters': {
-            'simple': {
-                'format': '[%(levelname)s] %(module)s : %(message)s'
-                },
-            'verbose': {
-                'format': '[%(asctime)s] [%(levelname)s] %(module)s : %(message)s'
-                }
-            },
-
-        'handlers': {
-            'null': {
-                'level': 'DEBUG',
-                'class': 'django.utils.log.NullHandler',
-                },
-            'console': {
-                'level': 'INFO',
-                'class': 'logging.StreamHandler',
-                'formatter': 'verbose'
-                },
-            'file': {
-                'level': 'INFO',
-                'class': 'logging.FileHandler',
-                'formatter': 'verbose',
-                'filename': LOG_FILE,
-                'mode': 'a',
-                },
-            'mail_admins': {
-                'level': 'ERROR',
-                'class': 'django.utils.log.AdminEmailHandler',
-                'filters': ['require_debug_false']
-                }
-            },
-        'loggers': {
-            '': {
-                'handlers': ['file', 'console'],
-                'level': 'INFO',
-                'propagate': True,
-                },
-            'django': {
-                'handlers': ['file', 'console'],
-                'level': 'DEBUG',
-                'propagate': True,
-                },
-            'django.request': {
-                'handlers': ['mail_admins', 'console'],
-                'level': 'ERROR',
-                'propagate': True,
-                },
-            }
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
         }
+    },
+    'formatters': {
+        'simple': {
+            'format': '[%(levelname)s] %(module)s : %(message)s'
+        },
+        'verbose': {
+            'format': '[%(asctime)s] [%(levelname)s] %(module)s : %(message)s'
+        }
+    },
 
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.NullHandler',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            'filename': LOG_FILE,
+            'mode': 'a',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_false']
+        }
+    },
+    'loggers': {
+        '': {
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins', 'console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
 
-#cache配置#########################################
+# cache配置#########################################
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -183,7 +175,7 @@ CACHES = {
     },
     'memcache': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        #'LOCATION': 'unix:/home/billvsme/memcached.sock',
+        # 'LOCATION': 'unix:/home/billvsme/memcached.sock',
         'LOCATION': '127.0.0.1:11211',
         'options': {
             'MAX_ENTRIES': 1024,
@@ -191,29 +183,30 @@ CACHES = {
     },
 }
 
-
-#分页配置#######################################
+# 分页配置#######################################
 PAGE_NUM = 5
 
-#email配置#########################################
+# email配置#########################################
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = ''                       #SMTP地址 例如: smtp.163.com
-EMAIL_PORT = 25                       #SMTP端口 例如: 25
-EMAIL_HOST_USER = ''                  #我自己的邮箱 例如: xxxxxx@163.com
-EMAIL_HOST_PASSWORD = ''              #我的邮箱密码 例如  xxxxxxxxx
-EMAIL_SUBJECT_PREFIX = u'vmaig'       #为邮件Subject-line前缀,默认是'[django]'
-EMAIL_USE_TLS = True                  #与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
+EMAIL_HOST = 'smtp.qq.com'  # SMTP地址 例如: smtp.163.com
+EMAIL_PORT = 587  # SMTP端口 例如: 25
+EMAIL_HOST_USER = '378126581@qq.com'  # 我自己的邮箱 例如: xxxxxx@163.com
+EMAIL_HOST_PASSWORD = 'xqilynwxcfslbiga'  # 我的邮箱密码 例如  xxxxxxxxx
+EMAIL_SUBJECT_PREFIX = u'vmaig'  # 为邮件Subject-line前缀,默认是'[django]'
+EMAIL_USE_TLS = True  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
-
-
-
-
-
 
 qiniu_access_key = ''
 qiniu_secret_key = ''
 qiniu_bucket_name = ''
 
+import django_heroku
+
+django_heroku.settings(locals())
+
+# 设置静态路径STATIC_ROOT
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# 修改ALLOWED_HOSTS
+ALLOWED_HOSTS = ['pdjangoblog.herokuapp.com']
